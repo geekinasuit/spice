@@ -1,12 +1,16 @@
-//buildscript {
-//  apply from: '../../dependencies.gradle'
-//}
 plugins {
-  id 'org.jetbrains.kotlin.jvm' version '1.5.31' apply true
+  id 'org.jetbrains.kotlin.jvm' version '2.1.20' apply false
 }
 
-rootProject.ext {
+allprojects {
   group = 'com.squareup.spice'
-  artifact = 'root'
   version = '0.2'
+}
+
+subprojects {
+  pluginManager.withPlugin('org.jetbrains.kotlin.jvm') {
+    kotlin {
+      jvmToolchain(17)
+    }
+  }
 }
