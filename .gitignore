@@ -1,10 +1,26 @@
-gradlew.*
-gradle/
+gradlew.bat
+# Gradle wrapper: everything else under gradle/ ignored (caches etc.), but the wrapper
+# jar+properties are committed so `./gradlew` works with no local Gradle install.
+gradle/*
+!gradle/wrapper/
+gradle/wrapper/*
+!gradle/wrapper/gradle-wrapper.properties
 .idea/
 .aswb/
 .ijwb/
 bazel-*
 build/
+# Gradle's own per-project cache/state dir (distinct from gradle/wrapper/ above).
+.gradle/
+
+# FileWorkspaceTest's with_symlinks fixture is checked in as a tarball (symlinks don't
+# survive git checkout reliably cross-platform) and extracted here at test-run time by
+# extractWorkspace(). Bazel's sandboxed test execution never touches the real source
+# tree, so this only shows up as working-tree pollution under Gradle.
+core/src/test/resources/file_workspaces/with_symlinks/a/
+core/src/test/resources/file_workspaces/with_symlinks/a_symlink
+core/src/test/resources/file_workspaces/with_symlinks/foo/
+core/src/test/resources/file_workspaces/with_symlinks/workspace.spice.yml
 # Compiled class file
 *.class
 
@@ -18,13 +34,14 @@ build/
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
 *.zip
 *.tar.gz
 *.rar
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
