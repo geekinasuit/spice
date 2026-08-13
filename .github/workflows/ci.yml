@@ -1,5 +1,8 @@
 name: CI
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [main]
@@ -13,18 +16,25 @@ jobs:
 
       - uses: bazelbuild/setup-bazelisk@v3
 
+      # Cache only named, non-live directories: ~/.cache/bazel is Bazel's default
+      # output_user_root, which holds the running server's execroot and command
+      # socket — tar can't archive a live Unix domain socket, so caching that
+      # path outright fails to save. Naming the repository/disk cache dirs
+      # explicitly (via matching --repository_cache/--disk_cache flags below)
+      # keeps the cache scoped to content that's safe to archive.
       - name: Cache Bazel
         uses: actions/cache@v4
         with:
           path: |
-            ~/.cache/bazel
             ~/.cache/bazelisk
+            ~/.cache/bazel-disk-cache
+            ~/.cache/bazel-repo-cache
           key: bazel-${{ runner.os }}-${{ hashFiles('MODULE.bazel', 'maven_install.json') }}
           restore-keys: |
             bazel-${{ runner.os }}-
 
       - name: Build
-        run: bazel build //...
+        run: bazel build //... --disk_cache=~/.cache/bazel-disk-cache --repository_cache=~/.cache/bazel-repo-cache
 
       - name: Test
-        run: bazel test //... --test_output=errors
+        run: bazel test //... --test_output=errors --disk_cache=~/.cache/bazel-disk-cache --repository_cache=~/.cache/bazel-repo-cache
