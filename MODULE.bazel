@@ -1,0 +1,29 @@
+module(name = "spice")
+
+bazel_dep(name = "rules_kotlin", version = "2.4.0")
+bazel_dep(name = "rules_jvm_external", version = "7.1")
+bazel_dep(name = "rules_java", version = "9.3.0")
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    artifacts = [
+        "com.fasterxml.jackson.core:jackson-annotations:2.11.0",
+        "com.fasterxml.jackson.core:jackson-databind:2.11.0",
+        "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.0",
+        "com.fasterxml.jackson.module:jackson-module-kotlin:2.11.0",
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.5.2",
+        "com.google.truth:truth:1.1.3",
+        "org.junit.jupiter:junit-jupiter-api:5.8.2",
+        "org.junit.jupiter:junit-jupiter-engine:5.8.2",
+        "org.junit.platform:junit-platform-commons:1.8.2",
+        "org.junit.platform:junit-platform-console:1.8.2",
+        "org.junit.platform:junit-platform-engine:1.8.2",
+        "org.junit.platform:junit-platform-launcher:1.8.2",
+    ],
+    repositories = [
+        "https://repo1.maven.org/maven2",
+    ],
+    lock_file = "//:maven_install.json",
+    known_contributing_modules = ["protobuf"],
+)
+use_repo(maven, "maven")
