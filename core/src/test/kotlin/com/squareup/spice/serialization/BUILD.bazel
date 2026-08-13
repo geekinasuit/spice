@@ -1,4 +1,4 @@
-load("@io_bazel_rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library")
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library")
 load("//tools:junit5.bzl", "kt_jvm_test")
 
 kt_jvm_test(
@@ -9,8 +9,8 @@ kt_jvm_test(
     test_class = "com.squareup.spice.serialization.FileWorkspaceTest",
     deps = [
         "//model",
-        "@maven//com/google/truth",
-        "@maven//org/junit/jupiter:junit-jupiter-api",
+        "@maven//:com_google_truth_truth",
+        "@maven//:org_junit_jupiter_junit_jupiter_api",
     ],
 )
 
@@ -21,8 +21,8 @@ kt_jvm_test(
     test_class = "com.squareup.spice.serialization.IndexingTest",
     deps = [
         "//model",
-        "@maven//com/google/truth",
-        "@maven//org/junit/jupiter:junit-jupiter-api",
+        "@maven//:com_google_truth_truth",
+        "@maven//:org_junit_jupiter_junit_jupiter_api",
     ],
 )
 
@@ -35,8 +35,8 @@ kt_jvm_test(
     test_class = "com.squareup.spice.serialization.ScaleTest",
     deps = [
         "//model",
-        "@maven//com/google/truth",
-        "@maven//org/junit/jupiter:junit-jupiter-api",
+        "@maven//:com_google_truth_truth",
+        "@maven//:org_junit_jupiter_junit_jupiter_api",
     ],
 )
 
@@ -47,7 +47,7 @@ kt_jvm_test(
     test_class = "com.squareup.spice.serialization.SerializerTest",
     deps = [
         "//model",
-        "@maven//com/google/truth",
-        "@maven//org/junit/jupiter:junit-jupiter-api",
+        "@maven//:com_google_truth_truth",
+        "@maven//:org_junit_jupiter_junit_jupiter_api",
     ],
 )

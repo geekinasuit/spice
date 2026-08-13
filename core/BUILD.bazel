@@ -1,4 +1,4 @@
-load("@io_bazel_rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library")
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library")
 
 kt_jvm_library(
     name = "core",
@@ -6,9 +6,9 @@ kt_jvm_library(
     visibility = ["//:__subpackages__"],
     deps = [
         "//model",
-        "@maven//com/fasterxml/jackson/core:jackson-databind",
-        "@maven//com/fasterxml/jackson/dataformat:jackson-dataformat-yaml",
-        "@maven//com/fasterxml/jackson/module:jackson-module-kotlin",
-        "@maven//org/jetbrains/kotlinx:kotlinx-coroutines-core-jvm",
+        "@maven//:com_fasterxml_jackson_core_jackson_databind",
+        "@maven//:com_fasterxml_jackson_dataformat_jackson_dataformat_yaml",
+        "@maven//:com_fasterxml_jackson_module_jackson_module_kotlin",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_coroutines_core_jvm",
     ],
 )
