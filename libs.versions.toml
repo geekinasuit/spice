@@ -1,15 +1,15 @@
 [versions]
-jackson = "2.12.4"
+jackson = "2.11.0"
 okhttp = "4.5.0"
 okio = "2.4.1"
 retrofit = "2.7.2"
 wire = "3.0.0"
 xenomachina = "2.0.7"
-kotlinx = "1.5.1"
+kotlinx = "1.5.2"
 snakeyaml = "1.26"
 junit = "5.8.2"
-junit-gradle = "1.2.0"
-truth = "1.0"
+junit-platform = "1.8.2"
+truth = "1.1.3"
 
 
 [libraries]
@@ -27,5 +27,5 @@ wire-runtime = { module = "com.squareup.wire:wire-runtime", version.ref = "wire"
 xenomachina-argparser = { module = "com.xenomachina:kotlin-argparser", version.ref = "xenomachina" }
 junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
 junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
-junit-gradle = { module = "org.junit.platform:junit-platform-gradle-plugin", version.ref = "junit-gradle" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform" }
 google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
